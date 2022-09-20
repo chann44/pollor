@@ -1,0 +1,89 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        Int       @id @default(autoincrement())
+  createdAt DateTime  @default(now())
+  username  String    @unique
+  email     String?
+  bio       String?
+  pfp       String?
+  password  String
+  Poll      Poll[]
+  Comments  Comment[]
+  Follows   Follows[]
+  Vote      Vote[]
+}
+
+model Vote {
+  poll     Poll     @relation(fields: [pollId], references: [id])
+  pollId   Int
+  voter    User     @relation(fields: [voterId], references: [id])
+  voterId  Int
+  option   Option   @relation(fields: [optionId], references: [id])
+  optionId Int
+  voted    Boolean? @default(false)
+
+  @@id([pollId, voterId])
+}
+
+model Poll {
+  id         Int        @id @default(autoincrement())
+  createdAt  DateTime   @default(now())
+  updatedAt  DateTime   @updatedAt()
+  title      String
+  creator    User       @relation(fields: [creatorId], references: [id], onDelete: Cascade)
+  creatorId  Int
+  Comment    Comment[]
+  votes      Int
+  Option     Option[]
+  catagories Catagory[]
+  Vote       Vote[]
+}
+
+model Option {
+  id        Int      @id @unique @default(autoincrement())
+  text      String
+  poll      Poll     @relation(fields: [pollId], references: [id], onDelete: Cascade)
+  pollId    Int
+  vote      Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  Vote      Vote[]
+}
+
+model Comment {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  text      String
+  creator   User     @relation(fields: [creatorId], references: [id], onDelete: Cascade)
+  creatorId Int
+  poll      Poll?    @relation(fields: [pollId], references: [id], onDelete: Cascade)
+  pollId    Int?
+}
+
+model Catagory {
+  id      Int       @id @default(autoincrement())
+  name    String    @unique
+  poll    Poll[]
+  Follows Follows[]
+}
+
+model Follows {
+  follower   User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId     Int
+  catagory   Catagory @relation(fields: [catagoryId], references: [id], onDelete: Cascade)
+  catagoryId Int
+
+  @@id([userId, catagoryId])
+}
