@@ -2,11 +2,12 @@ import { Request, Response } from "express";
 import { prisma } from "../uttils/prisma";
 import { createJwtToken } from "../uttils/jwtauthToken";
 import bcrypt from "bcrypt";
+import { getRandomAvtar } from "g-avtar-sdk";
 import { hashPassword } from "../uttils/hashpassword";
 export const regiseterUser = async (req: Request, res: Response) => {
   const username = req.body.username;
   const password = req.body.password;
-  const email = req.body.email;
+  const img = await getRandomAvtar();
   try {
     const hashedpassword = await hashPassword(password);
     if (hashedpassword) {
@@ -14,7 +15,11 @@ export const regiseterUser = async (req: Request, res: Response) => {
         data: {
           username: username,
           password: hashedpassword,
-          email: email,
+          profile: {
+            create: {
+              pfp: img.toString(),
+            },
+          },
         },
       });
       console.log(user);

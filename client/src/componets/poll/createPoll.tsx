@@ -30,7 +30,7 @@ const CreatePoll = () => {
   const getAllCatagores = async () => {
     const res = await instance.get('/poll/dropit')
     setCatagories(res.data)
-    console.log('catagories', res.data)
+    console.log('catagories on create poll', res.data)
   }
 
   useEffect(() => {

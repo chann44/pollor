@@ -502,6 +502,11 @@
   resolved "https://registry.npmjs.org/@types/node/-/node-18.7.1.tgz"
   integrity sha512-GKX1Qnqxo4S+Z/+Z8KKPLpH282LD7jLHWJcVryOflnsnH+BtSDfieR6ObwBMwpnNws0bUK8GI7z0unQf9bARNQ==
 
+"@types/node@^18.7.18":
+  version "18.7.18"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-18.7.18.tgz#633184f55c322e4fb08612307c274ee6d5ed3154"
+  integrity sha512-m+6nTEOadJZuTPkKR/SYK3A2d7FZrgElol9UP1Kae90VVU4a6mxnPuLiIW1m4Cq4gZ/nWb9GrdVXJCoCazDAbg==
+
 "@types/prop-types@*":
   version "15.7.5"
   resolved "https://registry.npmjs.org/@types/prop-types/-/prop-types-15.7.5.tgz"
@@ -1930,6 +1935,35 @@ functions-have-names@^1.2.2:
   version "1.2.3"
   resolved "https://registry.npmjs.org/functions-have-names/-/functions-have-names-1.2.3.tgz"
   integrity sha512-xckBUXyTIqT97tq2x2AMb+g163b5JFysYk0x4qxNFwbfQkmNZoiRHb6sPzI9/QV33WeuvVYBUIiD4NzNIyqaRQ==
+
+g-avtar-sdk@^0.0.1:
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/g-avtar-sdk/-/g-avtar-sdk-0.0.1.tgz#9d68e3a94c37c9a3e27772610fde58eb64134096"
+  integrity sha512-y/lzpPQql2sJAo0QPTRld5v2w33VxgRiIKsAftZ1GD43TDD3fwLeHQ1JQ7HCFjtN20riVJwSRmvrOaW6xow9xQ==
+  dependencies:
+    "@types/node" "^18.7.18"
+    ts-node "^10.9.1"
+    typescript "^4.8.3"
+
+g-avtar-sdk@^0.0.2:
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/g-avtar-sdk/-/g-avtar-sdk-0.0.2.tgz#8c08da8508a219cd0251a3939db2a4c61647ec47"
+  integrity sha512-3/Dgjr/VY98DBnwB21Y1zy011e/M5953dcqw27iqRRya6uJJ8HVW+44lFa2DMgB94xYp867wtTNqQxe64d6CyQ==
+  dependencies:
+    "@types/node" "^18.7.18"
+    g-avtar-sdk "^0.0.1"
+    ts-node "^10.9.1"
+    typescript "^4.8.3"
+
+g-avtar-sdk@^0.0.4:
+  version "0.0.4"
+  resolved "https://registry.yarnpkg.com/g-avtar-sdk/-/g-avtar-sdk-0.0.4.tgz#97bbc30be44b7414596296bb025d22a1a371735a"
+  integrity sha512-EIlPovgMnMlWxt0//cGQqMb0B8hElU+JM9hqK4aS4IJlWmMIrTT48hkvzmmguIbabL8uw1GRyfnnsg7spv8zPg==
+  dependencies:
+    "@types/node" "^18.7.18"
+    g-avtar-sdk "^0.0.2"
+    ts-node "^10.9.1"
+    typescript "^4.8.3"
 
 gauge@^3.0.0:
   version "3.0.2"
@@ -3679,6 +3713,11 @@ typescript@^4.6.4, typescript@^4.7.4:
   version "4.7.4"
   resolved "https://registry.npmjs.org/typescript/-/typescript-4.7.4.tgz"
   integrity sha512-C0WQT0gezHuw6AdY1M2jxUO83Rjf0HP7Sk1DtXj6j1EwkQNZrHAg2XPWlq62oqEhYvONq5pkC2Y9oPljWToLmQ==
+
+typescript@^4.8.3:
+  version "4.8.3"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.8.3.tgz#d59344522c4bc464a65a730ac695007fdb66dd88"
+  integrity sha512-goMHfm00nWPa8UvR/CPSvykqf6dVV8x/dp0c5mFTMTIu0u0FlGWRioyy7Nn0PGAdHxpJZnuO/ut+PpQ8UiHAig==
 
 unbox-primitive@^1.0.2:
   version "1.0.2"
