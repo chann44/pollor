@@ -4,8 +4,9 @@ import { useState } from 'react'
 import { AiFillFrown, AiOutlineMore } from 'react-icons/ai'
 import Pfp from './pfp'
 import { useCookies } from 'react-cookie'
+import EdiProfile from '../editProfile'
 const NavbarMain = () => {
-  const { user } = useAppContext()
+  const { user, showEditProfile, setShowEditProfile } = useAppContext()
   const [searchTerm, setSearchTerm] = useState<string>('')
   const navigate = useNavigate()
   const [cookies, setCookie, removeCookie] = useCookies(['jwtToken'])
@@ -73,8 +74,12 @@ const NavbarMain = () => {
                   <span className='badge'>New</span>
                 </a>
               </li>
-              <li>
-                <a>Settings</a>
+              <li
+                onClick={() => {
+                  setShowEditProfile(true)
+                }}
+              >
+                <a>Edit profile</a>
               </li>
               <li
                 onClick={async () => {
@@ -88,6 +93,8 @@ const NavbarMain = () => {
           </div>
         </div>
       </div>
+
+      {showEditProfile && <EdiProfile />}
     </>
   )
 }

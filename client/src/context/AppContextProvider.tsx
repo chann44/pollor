@@ -21,6 +21,8 @@ interface AppContextProviderInterface {
   setShowModal: Dispatch<SetStateAction<boolean>>
   refetch: boolean
   setRefetch: Dispatch<SetStateAction<boolean>>
+  showEditProfile: boolean
+  setShowEditProfile: Dispatch<SetStateAction<boolean>>
 }
 
 interface IContextProps {
@@ -43,6 +45,7 @@ export const AppContextProvider = ({ children }: IContextProps) => {
   const [cookies, setCookie] = useCookies(['jwtToken'])
   const instance = useAxios()
   const [refetch, setRefetch] = useState(false)
+  const [showEditProfile, setShowEditProfile] = useState<boolean>(false)
   const getLoggedInUser = async () => {
     const user = await instance.get('/')
     console.log(user)
@@ -73,6 +76,8 @@ export const AppContextProvider = ({ children }: IContextProps) => {
     setAlreadyVoted,
     refetch,
     setRefetch,
+    showEditProfile,
+    setShowEditProfile,
   }
   return (
     <>

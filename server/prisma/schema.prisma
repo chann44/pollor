@@ -13,15 +13,25 @@ datasource db {
 model User {
   id        Int       @id @default(autoincrement())
   createdAt DateTime  @default(now())
+  updatedAt DateTime  @default(now())
   username  String    @unique
-  email     String?
-  bio       String?
-  pfp       String?
   password  String
   Poll      Poll[]
+  profile   Profile?
   Comments  Comment[]
   Follows   Follows[]
   Vote      Vote[]
+  profileId Int?
+}
+
+model Profile {
+  id     Int       @id @default(autoincrement())
+  pfp    String?
+  email  String?
+  bio    String?
+  dob    DateTime?
+  User   User?     @relation(fields: [userId], references: [id])
+  userId Int?      @unique
 }
 
 model Vote {
