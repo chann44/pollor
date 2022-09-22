@@ -5,7 +5,7 @@ const Comment = ({ text, creator }: TComment) => {
   return (
     <div className='flex space-x-3 border  p-2'>
       <div className='w-9 h-9'>
-        <Pfp />
+        <Pfp img={creator?.profile?.pfp} />
       </div>
       <div>
         <div className='text-sm'>

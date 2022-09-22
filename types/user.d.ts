@@ -1,12 +1,18 @@
 export type User = {
   id: number;
   username: string;
-  profile_img: string;
   createdAt: Date;
-  bio: string;
   updatedAt: string;
   comments: TComment[];
   Poll: TPoll[];
+  profile: Profile;
+};
+
+export type Profile = {
+  bio: string;
+  pfp: string;
+  email: string;
+  dob: string;
 };
 
 export type TComment = {

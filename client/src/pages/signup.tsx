@@ -47,7 +47,7 @@ export default function Signup() {
       })
       setIsAuthenticated(true)
       setCookies('jwtToken', res.data.token)
-      navigate('/')
+      navigate('/createprofile')
       console.log(res.status, res.data)
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (e: any) {

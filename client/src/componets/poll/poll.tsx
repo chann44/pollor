@@ -13,7 +13,7 @@ const Poll = ({ id, title, creator, Option, Comment, votes }: Tpoll) => {
     <>
       <div className='w-full  flex space-x-10  p-8'>
         <div className='w-14 h-14'>
-          <Pfp />
+          <Pfp img={creator?.profile?.pfp} />
         </div>
         <div className='space-y-4 w-full'>
           <div className=''>

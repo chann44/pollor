@@ -49,7 +49,7 @@ const NavbarMain = () => {
             data-tip='explore'
             className='px-5 tooltip tooltip-primary tooltip-bottom btn bg-transparent btn-primary'
             onClick={(e) => {
-              navigate(`/searc/${'programing'}`)
+              navigate(`/search/${'trending'}`)
             }}
           >
             explore
@@ -57,7 +57,7 @@ const NavbarMain = () => {
           <div className='dropdown dropdown-end'>
             <label tabIndex={0} className='btn btn-ghost btn-circle avatar'>
               <div className='w-10 rounded-full'>
-                <img src='https://placeimg.com/80/80/people' />
+                <img src={user?.profile?.pfp} />
               </div>
             </label>
             <ul

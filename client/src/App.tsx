@@ -11,6 +11,7 @@ import { useAppContext } from './context/AppContextProvider'
 import Search from './pages/search'
 import CreatePoll from './componets/poll/createPoll'
 import Signup from './pages/signup'
+import CreateProfile from './pages/createprofile'
 
 function App() {
   // this is te pleace for react-touter setup
@@ -29,7 +30,7 @@ function App() {
                 path='/'
                 element={
                   <RequireAuth>
-                    <Feed />
+                    <CreateProfile />
                   </RequireAuth>
                 }
               />
@@ -57,6 +58,15 @@ function App() {
                   </RequireAuth>
                 }
               />
+              <Route
+                path='/createprofile'
+                element={
+                  <RequireAuth>
+                    <CreateProfile />
+                  </RequireAuth>
+                }
+              />
+
               <Route
                 path='/login'
                 element={

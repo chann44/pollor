@@ -6,7 +6,6 @@ export const createPoll = async (req: Request, res: Response) => {
   const options: string[] = req.body.options;
   const userId = req.body.userId;
   const catagoryId = req.body.catagoryId;
-  console.log(title);
   try {
     const poll = await prisma.poll.create({
       data: {

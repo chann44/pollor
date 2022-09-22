@@ -12,7 +12,6 @@ const Profile = () => {
   const instance = useAxios()
   const [cookies, setCookie, removeCookie] = useCookies(['jwtToken'])
   const [profile, setProfile] = useState<User | null>(null)
-  const { user, setIsAuthenticated } = useAppContext()
 
   const getUserProfile = async () => {
     try {
@@ -33,13 +32,13 @@ const Profile = () => {
       <div className=' w-full p-4'>
         <div className='flex p-10 space-x-6'>
           <div className='h-20 w-20'>
-            <Pfp />
+            <Pfp img={profile?.profile?.pfp} />
           </div>
           <div className=' w-full space-y-2 p'>
             <div className='w-full flex justify-between'>
               <h1 className='text-3xl'>{profile?.username}</h1>
             </div>
-            <p>{profile?.bio}</p>
+            <p>{profile?.profile?.bio}</p>
             <p className='text-sm stat-title'>
               joined at :{' '}
               {profile?.createdAt && new Date(profile?.createdAt.toString()).toLocaleDateString()}

@@ -1,9 +1,13 @@
-const Pfp = () => {
+interface Props {
+  img: string | undefined
+}
+
+const Pfp = ({ img }: Props) => {
   return (
     <>
       <div className='avatar '>
         <div className=' rounded-full'>
-          <img src='https://placeimg.com/192/192/people' />
+          <img src={img} />
         </div>
       </div>
     </>

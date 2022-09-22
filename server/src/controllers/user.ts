@@ -10,6 +10,7 @@ export const getLoggedinUser = async (req: Request, res: Response) => {
         id: Number(id),
       },
       include: {
+        profile: true,
         Follows: {
           include: {
             follower: true,
@@ -35,6 +36,7 @@ export const getUser = async (req: Request, res: Response) => {
         id: Number(userId),
       },
       include: {
+        profile: true,
         Poll: {
           include: {
             Option: true,
