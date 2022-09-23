@@ -25,13 +25,14 @@ model User {
 }
 
 model Profile {
-  id     Int       @id @default(autoincrement())
+  id     Int     @id @default(autoincrement())
   pfp    String?
   email  String?
   bio    String?
-  dob    DateTime?
-  User   User?     @relation(fields: [userId], references: [id])
-  userId Int?      @unique
+  age    Int?
+  gender String?
+  User   User?   @relation(fields: [userId], references: [id])
+  userId Int?    @unique
 }
 
 model Vote {

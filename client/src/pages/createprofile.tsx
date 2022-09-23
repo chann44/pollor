@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/ban-types */
 import { useEffect, useState } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
+import { useNavigate } from 'react-router-dom'
 import { useAxios } from '../axios/axios'
 
 enum GenderEnum {
@@ -10,11 +11,11 @@ enum GenderEnum {
 }
 
 interface IFormInput {
-  username: string
+  email: string
   bio: string
   age: string
   gender: GenderEnum
-  Topics: string[]
+  Topics: number[] | null
 }
 
 interface TabProp {
@@ -32,7 +33,7 @@ const Tab = ({ name, id, setTopics }: TabProp) => {
           e.stopPropagation()
           console.log(name)
           setIsActive(true)
-          setTopics((prv: string[]) => [...prv, name])
+          setTopics((prv: number[]) => [...prv, id])
         }}
         className={(isActive ? ' text-primary  font-bold ' : '') + ' px-4 py-1  '}
       >
@@ -46,8 +47,8 @@ const CreateProfile = () => {
   const { register, handleSubmit } = useForm<IFormInput>()
   const [catagories, setCatagories] = useState<any>()
   const instance = useAxios()
-  const [topics, setTopics] = useState<string[] | null>([])
-
+  const [topics, setTopics] = useState<number[] | null>([])
+  const navigate = useNavigate()
   const getAllCatagores = async () => {
     const res = await instance.get('/poll/dropit')
     setCatagories(res.data)
@@ -58,18 +59,27 @@ const CreateProfile = () => {
     getAllCatagores()
   }, [])
 
-  const onSubmit: SubmitHandler<IFormInput> = (data) => {
-    console.log({ ...data, topics: topics })
+  const onSubmit = async (data: IFormInput) => {
+    data = { ...data, Topics: topics }
+    try {
+      const res = await instance.post('/c', {
+        ...data,
+      })
+      console.log(res)
+      navigate('/')
+    } catch (e) {
+      console.log(e)
+    }
   }
   return (
     <>
       <div className='space-y-10  p-6'>
         <h1 className='text-4xl'>create profile</h1>
         <div className='w-full max-w-lg'>
-          <form onSubmit={handleSubmit(onSubmit)} className='space-y-4'>
+          <form className='space-y-4'>
             <div className='flex flex-col space-y-2'>
-              <label className='text-lg label label-text '>Username</label>
-              <input className='p-2 input input-bordered' {...register('username')} />
+              <label className='text-lg label label-text '>email</label>
+              <input className='p-2 input input-bordered' {...register('email')} />
             </div>
             <div className='flex flex-col space-y-2'>
               <label className='text-lg'>About</label>
@@ -98,16 +108,21 @@ const CreateProfile = () => {
                 <option value='other'>other</option>
               </select>
             </div>
-            <div className='mb-6 flex flex-col space-y-2'>
-              <label className='text-lg'>Topics</label>
-              <div className='tabs  w-[90%] flex l'>
-                {catagories?.map((cat: any) => {
-                  return <Tab name={cat.name} setTopics={setTopics} id={cat.id} key={cat.id} />
-                })}
-              </div>
-            </div>
-            <input type='submit' value='Next' className='mt-8 w-full p-3 btn-primary btn' />
           </form>
+          <div className='mb-6 flex flex-col space-y-2'>
+            <label className='text-lg'>Topics</label>
+            <div
+              className='tabs  w-[90%] flex l'
+              onClick={(e) => {
+                e.stopPropagation()
+              }}
+            >
+              {catagories?.map((cat: any) => {
+                return <Tab name={cat.name} setTopics={setTopics} id={cat.id} key={cat.id} />
+              })}
+            </div>
+          </div>
+          <button onClick={handleSubmit(onSubmit)}>Next</button>
         </div>
       </div>
     </>

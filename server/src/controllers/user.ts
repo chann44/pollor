@@ -133,3 +133,45 @@ export const deletePoll = async (req: Request, res: Response) => {
     res.json(e);
   }
 };
+
+export const createprofile = async (req: Request, res: Response) => {
+  console.log(req.body);
+  const userId = req.body.id;
+  const email = req.body.email;
+  const bio = req.body.bio;
+  const age = req.body.age;
+  const gender = req.body.gender;
+  const topics = req.body.Topics;
+  try {
+    const profile = await prisma.profile.update({
+      where: {
+        userId: Number(userId),
+      },
+      data: {
+        bio: bio,
+        age: Number(age),
+        email: email,
+        gender: gender,
+      },
+    });
+    console.log(profile);
+    const followData: any = topics.map((catID: number) => {
+      return {
+        catagoryId: catID,
+        userId: Number(userId),
+      };
+    });
+    console.log(profile);
+    const follow = await prisma.follows.createMany({
+      data: followData,
+    });
+    console.log(follow);
+
+    res.status(200);
+    res.json("success");
+  } catch (e) {
+    console.log(e);
+    res.status(500);
+    res.json(e);
+  }
+};
