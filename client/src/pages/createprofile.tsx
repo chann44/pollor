@@ -122,7 +122,9 @@ const CreateProfile = () => {
               })}
             </div>
           </div>
-          <button onClick={handleSubmit(onSubmit)}>Next</button>
+          <button onClick={handleSubmit(onSubmit)} className='btn btn-primary w-full'>
+            Next
+          </button>
         </div>
       </div>
     </>
