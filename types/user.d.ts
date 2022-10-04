@@ -27,7 +27,7 @@ export type TComment = {
 export type Tpoll = {
   id: number;
   title: string;
-  Option: Option[];
+  Option: TOption[];
   creator: User;
   createdAt: string;
   updated_at: string;

@@ -12,6 +12,9 @@ import Search from './pages/search'
 import CreatePoll from './componets/poll/createPoll'
 import Signup from './pages/signup'
 import CreateProfile from './pages/createprofile'
+import Chart from 'chart.js/auto'
+import { CategoryScale } from 'chart.js'
+Chart.register(CategoryScale)
 
 function App() {
   // this is te pleace for react-touter setup

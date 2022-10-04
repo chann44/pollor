@@ -9,6 +9,7 @@ interface Props {
   pollId: number
   optoinId: number
   totalVotes: number
+  setShowPie: any
 }
 
 const OptionItem = ({
@@ -20,6 +21,7 @@ const OptionItem = ({
   setIsSelected,
   isSelected,
   totalVotes,
+  setShowPie,
 }: Props) => {
   const [currentVotes, setCurrentVotes] = useState(vote)
   const per = (100 * currentVotes) / totalVotes

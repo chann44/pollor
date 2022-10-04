@@ -11,6 +11,7 @@ interface OptionProp {
   setAlreadyVoted: any
   totalVotes: number
   setPvotes: any
+  setShowPie: any
 }
 
 const OptionEl = ({
@@ -20,6 +21,7 @@ const OptionEl = ({
   setAlreadyVoted,
   totalVotes,
   setPvotes,
+  setShowPie,
 }: OptionProp) => {
   const [isSelected, setIsSelected] = useState(pIsSelected)
 
@@ -55,6 +57,7 @@ const OptionEl = ({
           return (
             <>
               <OptionItem
+                setShowPie={setShowPie}
                 totalVotes={totalVotes}
                 doVote={doVote}
                 isSelected={isSelected}
