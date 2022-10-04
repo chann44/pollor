@@ -1,4 +1,4 @@
-# 4-4chan
+# Pollor
 
 pollor is a crowd-sourced polling app created with React and Nodejs. pollor lets you create edit, update, delete public polls and vote on them publicly.
 
